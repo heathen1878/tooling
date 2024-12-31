@@ -4,6 +4,18 @@ This repo contains the infrastructure that is required to bootstrap Terraform fo
 
 The setup is as follows:
 
+1. Install DevBox
+
+```shell
+curl -fsSL https://get.jetify.com/devbox | bash
+```
+
+2. Start DevBox
+
+```shell
+devbox shell
+```
+
 1. Install the tooling scripts locally... i.e. clone this repository
 2. Set your aliases - noting your path is possibly different...
 
@@ -24,11 +36,13 @@ The setup is as follows:
 
 ```shell
 ~/.bashrc << EOF
-if [ -d ~/source/functions ]
+if [ -d ~/source/tooling/functions ]
     then
-    for f in ~/source/functions/*.sh
+    for f in ~/source/tooling/functions/*.sh
         source $f
     done
 fi
 EOF
 ```
+
+4. 
