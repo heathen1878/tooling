@@ -20,4 +20,15 @@ The setup is as follows:
 } >> ~/.bash_aliases
 ```
 
-3. 
+3. Set bashrc to dot source the functions required by the aliases above
+
+```shell
+~/.bashrc << EOF
+if [ -d ~/source/functions ]
+    then
+    for f in ~/source/functions/*.sh
+        source $f
+    done
+fi
+EOF
+```
