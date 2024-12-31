@@ -1,5 +1,7 @@
 # Tooling
 
+[![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
+
 This repo contains the infrastructure that is required to bootstrap Terraform for all the other repositories which contain Terraform code examples.
 
 The setup is as follows:
@@ -15,9 +17,6 @@ curl -fsSL https://get.jetify.com/devbox | bash
 ```shell
 devbox shell
 ```
-
-1. Install the tooling scripts locally... i.e. clone this repository
-2. Set your aliases - noting your path is possibly different...
 
 ```shell
 {
