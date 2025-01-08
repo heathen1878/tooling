@@ -1,18 +1,20 @@
 format = """
+$line_break\
+${custom.devbox}\
+$line_break\
 $username\
 $hostname\
 $directory\
-${custom.subscription}\
-$line_break\
-${custom.namespace}\
-${custom.location}\
-${custom.module}\
 $git_branch\
 $git_commit\
 $git_state\
 $git_status\
 $line_break\
-${custom.devbox}\
+${custom.subscription}\
+$line_break\
+${custom.namespace}\
+${custom.location}\
+${custom.module}\
 $line_break\
 $cmd_duration\
 $shell\
@@ -63,15 +65,14 @@ renamed = " 👅 "
 deleted = " 🗑 "
 
 [custom.devbox]
-style = "bold yellow"
 when = """ if [[ $DEVBOX_SHELL_ENABLED ]]; then exit 0; fi; exit 1 """
-format = "Devbox Shell enabled...🚀 "
+format = "Using the Devbox Shell...🚀 "
 
 [custom.subscription]
 command = "az account show | jq -rc '.name'"
 style = "bold purple"
 when = """ if [[ "$(pwd)" == *source* ]]; then exit 0; fi; exit 1 """
-format = "subscription: [($output)]($style) "
+format = "Connected to Azure Subscription: [($output)]($style) "
 ignore_timeout = true
 
 [custom.namespace]
