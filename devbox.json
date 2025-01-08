@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.6/.schema/devbox.schema.json",
+  "packages": [
+    "starship@1.21.1",
+    "curl@latest",
+    "unzip@latest",
+    "lesspipe@latest",
+    "keychain@latest",
+    "terraform@1.9.3"
+  ],
+  "shell": {
+    "init_hook": [
+      "mkdir ~/tmp  > /dev/null 2>&1",
+      "mkdir ~/.fonts  > /dev/null 2>&1",
+      "curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip --output ~/tmp/JetBrainsMono-2.304.zip; unzip -oqq ~/tmp/JetBrainsMono-2.304.zip -d ~/.fonts",
+      "export STARSHIP_CONFIG=${PWD}/starship/starship.toml",
+      "if [ -d \"${PWD}\"/functions ]; then for f in \"${PWD}\"/functions/*.sh; do source \"$f\"; done; fi",
+      "alias tfapply=\"source ${PWD}/scripts/apply.sh\"",
+      "alias tfauth=\"source ${PWD}/scripts/auth.sh\"",
+      "alias tfdestroy=\"source ${PWD}/scripts/destroy.sh\"",
+      "alias tfimport=\"source ${PWD}/scripts/import.sh\"",
+      "alias tfinit=\"source ${PWD}/scripts/init.sh\"",
+      "alias tfoutput=\"source ${PWD}/scripts/output.sh\"",
+      "alias tfplan=\"source ${PWD}/scripts/plan.sh\"",
+      "alias tfset=\"source ${PWD}/scripts/setup.sh\""
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
+    }
+  }
+}

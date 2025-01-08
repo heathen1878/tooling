@@ -1,23 +1,23 @@
 # Tooling
 
-This repo contains the infrastructure that is required to bootstrap Terraform for all the other repositories which contain Terraform code examples.
+[![Built with Devbox](https://www.jetify.com/img/devbox/shield_galaxy.svg)](https://www.jetify.com/devbox/docs/contributor-quickstart/)
+
+This repo contains the tooling to work with the Terraform code examples...
+
+[Bootstrapping](../)
 
 The setup is as follows:
 
-1. Install the tooling scripts locally... i.e. clone this repository
-2. Set your aliases - noting your path is possibly different...
+1. Install DevBox
 
 ```shell
-{
-    echo alias tfapply='source ~/source/tooling/scripts/apply.sh'
-    echo alias tfauth='source ~/source/tooling/scripts/auth.sh'
-    echo alias tfdestroy='source ~/source/tooling/scripts/destroy.sh'
-    echo alias tfimport='source ~/source/tooling/scripts/import.sh'
-    echo alias tfinit='source ~/source/tooling/scripts/init.sh'
-    echo alias tfoutput='source ~/source/tooling/scripts/output.sh'
-    echo alias tfplan='source ~/source/tooling/scripts/plan.sh'
-    echo alias tfset='source ~/source/tooling/scripts/setup.sh'
-} >> ~/.bash_aliases
+curl -fsSL https://get.jetify.com/devbox | bash
 ```
 
-3. 
+2. Start DevBox
+
+```shell
+git clone git@github.com:heathen1878/tooling.git
+
+devbox shell --config ~/source/github/tooling/
+```

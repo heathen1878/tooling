@@ -1,0 +1,97 @@
+format = """
+$line_break\
+${custom.devbox}\
+$line_break\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$line_break\
+${custom.subscription}\
+$line_break\
+${custom.namespace}\
+${custom.location}\
+${custom.module}\
+$line_break\
+$cmd_duration\
+$shell\
+$character\
+"""
+
+[character]
+error_symbol = "[✘](red bold)"
+success_symbol = "[➜](bold green)"
+
+[cmd_duration]
+min_time = 0
+format = "[$duration]($style) "
+
+[directory]
+truncation_length = 2
+truncation_symbol = "../"
+style = "bold cyan"
+home_symbol = "~"
+format = "[$path]($style) "
+
+[shell]
+disabled = false
+bash_indicator = "bash \\$"
+powershell_indicator = "pwsh >_"
+style = "cyan bold"
+
+[username]
+style_user = 'bold green'
+format = "\\$[$user]($style) in "
+show_always = true
+
+[terraform]
+disabled=true
+
+[git_status]
+conflicted = " 😵 "
+ahead = " ➕ "
+behind = " 😰 "
+diverged = " 🔥 "
+untracked = " 🕵️ "
+stashed = " 📦 "
+modified = " 📝 "
+#staged = " ++ "
+# had some issues with staged, comment out if you do
+staged = " 🗃️  ×${count} "
+renamed = " 👅 "
+deleted = " 🗑 "
+
+[custom.devbox]
+when = """ if [[ $DEVBOX_SHELL_ENABLED ]]; then exit 0; fi; exit 1 """
+format = "Using the Devbox Shell...🚀 "
+
+[custom.subscription]
+command = "az account show | jq -rc '.name'"
+style = "bold purple"
+when = """ if [[ "$(pwd)" == *source* ]]; then exit 0; fi; exit 1 """
+format = "Connected to Azure Subscription: [($output)]($style) "
+ignore_timeout = true
+
+[custom.namespace]
+command = "echo $NAMESPACE_ENVIRONMENT"
+style = "bold green"
+symbol = "☁️  "
+when = """ if [[ "$(pwd)" == *source* && ! -z $NAMESPACE_ENVIRONMENT ]]; then exit 0; fi; exit 1 """
+format = "set to [$symbol($output)]($style) "
+
+[custom.location]
+command = "echo $LOCATION"
+style = "bold green"
+symbol = "🌍 "
+when = """ if [[ "$(pwd)" == *source* && ! -z $LOCATION ]]; then exit 0; fi; exit 1 """
+format = "in [$symbol($output)]($style) "
+
+[custom.module]
+command = "echo $DEPLOYMENT_NAME"
+style = "bold green"
+symbol = "💬 "
+when = """ if [[ "$(pwd)" == *source* && ! -z $DEPLOYMENT_NAME ]]; then exit 0; fi; exit 1 """
+format = "using module [$symbol($output)]($style) "
