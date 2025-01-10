@@ -3,8 +3,13 @@
   "packages": [
     "starship@1.21.1",
     "unzip@latest",
-    "terraform@1.9.3"
+    "terraform@1.9.3",
+    "go@latest"
   ],
+  "env": {
+    "GOPATH": "${PWD}",
+    "PATH":"$PATH:${PWD}/bin"
+  },
   "shell": {
     "init_hook": [
       "mkdir ~/tmp  > /dev/null 2>&1",
