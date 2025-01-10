@@ -2,10 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.6/.schema/devbox.schema.json",
   "packages": [
     "starship@1.21.1",
-    "curl@latest",
     "unzip@latest",
-    "lesspipe@latest",
-    "keychain@latest",
     "terraform@1.9.3"
   ],
   "shell": {
@@ -22,7 +19,8 @@
       "alias tfinit=\"source ${PWD}/scripts/init.sh\"",
       "alias tfoutput=\"source ${PWD}/scripts/output.sh\"",
       "alias tfplan=\"source ${PWD}/scripts/plan.sh\"",
-      "alias tfset=\"source ${PWD}/scripts/setup.sh\""
+      "alias tfset=\"source ${PWD}/scripts/setup.sh\"",
+      "eval \"$(starship init bash)\""
     ],
     "scripts": {
       "test": [
