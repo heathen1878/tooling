@@ -19,5 +19,5 @@ curl -fsSL https://get.jetify.com/devbox | bash
 ```shell
 git clone git@github.com:heathen1878/tooling.git
 
-devbox shell --config ~/source/github/tooling/
+devbox shell --config ~/source/tooling/
 ```

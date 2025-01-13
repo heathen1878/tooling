@@ -4,17 +4,20 @@
     "starship@1.21.1",
     "unzip@latest",
     "terraform@1.9.3",
-    "go@latest"
+    "go@latest",
+    "azure-cli@latest"
   ],
   "env": {
     "GOPATH": "${PWD}",
-    "PATH":"$PATH:${PWD}/bin"
+    "PATH":   "$PATH:${PWD}/bin"
   },
   "shell": {
     "init_hook": [
       "mkdir ~/tmp  > /dev/null 2>&1",
-      "mkdir ~/.fonts  > /dev/null 2>&1",
-      "curl -sL https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip --output ~/tmp/JetBrainsMono-2.304.zip; unzip -oqq ~/tmp/JetBrainsMono-2.304.zip -d ~/.fonts",
+      "mkdir ~/.local/share/fonts  > /dev/null 2>&1",
+      "curl -sL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip --output ~/tmp/nerds.zip; unzip -oqq ~/tmp/nerds.zip -d ~/tmp/nerds",
+      "cp -r ~/tmp/nerds/* ~/.local/share/fonts",
+      "fc-cache -f ~/.local/share/fonts",
       "export STARSHIP_CONFIG=${PWD}/starship/starship.toml",
       "if [ -d \"${PWD}\"/functions ]; then for f in \"${PWD}\"/functions/*.sh; do source \"$f\"; done; fi",
       "alias tfapply=\"source ${PWD}/scripts/apply.sh\"",
