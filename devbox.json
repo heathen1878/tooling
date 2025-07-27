@@ -3,7 +3,6 @@
   "packages": [
     "starship@1.21.1",
     "unzip@latest",
-    "terraform@1.9.3",
     "go@latest",
     "jq@1.7.1",
     "packer@1.12.0",
