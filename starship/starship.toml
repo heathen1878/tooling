@@ -76,10 +76,10 @@ format = "Connected to Azure Subscription: [($output)]($style) "
 ignore_timeout = true
 
 [custom.namespace]
-command = "echo $NAMESPACE_ENVIRONMENT"
+command = "echo $PLATFORM $ENVIRONMENT"
 style = "bold green"
 symbol = "☁️  "
-when = """ if [[ "$(pwd)" == *source* && ! -z $NAMESPACE_ENVIRONMENT ]]; then exit 0; fi; exit 1 """
+when = """ if [[ "$(pwd)" == *source* && ! -z $PLATFORM && ! -z $ENVIRONMENT ]]; then exit 0; fi; exit 1 """
 format = "set to [$symbol($output)]($style) "
 
 [custom.location]
@@ -90,8 +90,8 @@ when = """ if [[ "$(pwd)" == *source* && ! -z $LOCATION ]]; then exit 0; fi; exi
 format = "in [$symbol($output)]($style) "
 
 [custom.module]
-command = "echo $DEPLOYMENT_NAME"
+command = "echo $MODULE"
 style = "bold green"
 symbol = "💬 "
-when = """ if [[ "$(pwd)" == *source* && ! -z $DEPLOYMENT_NAME ]]; then exit 0; fi; exit 1 """
+when = """ if [[ "$(pwd)" == *source* && ! -z $MODULE ]]; then exit 0; fi; exit 1 """
 format = "using module [$symbol($output)]($style) "

@@ -37,4 +37,9 @@ export TF_PLUGIN_CACHE_DIR
 _ok "Plugin cache set to : $TF_PLUGIN_CACHE_DIR"
 # end of checks
 
-terraform -chdir="$TERRAFORM_DEPLOYMENT" init -input=false -backend-config="$TERRAFORM_ENV"/backend.tfvars
+if [ -n "$TF_BUILD" ]
+then
+    terraform -chdir="$TERRAFORM_DEPLOYMENT" init -input=false -backend-config="$TERRAFORM_ENV"/backend.tfvars -reconfigure
+else
+    terraform -chdir="$TERRAFORM_DEPLOYMENT" init -backend-config="$TERRAFORM_ENV"/backend.tfvars -reconfigure
+fi

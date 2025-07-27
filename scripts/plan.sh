@@ -26,9 +26,19 @@ fi
 if [ -n "$TF_BUILD" ]
 then
     # automation mode
-    terraform -chdir="$TERRAFORM_DEPLOYMENT" plan -var-file="$TERRAFORM_ENV"/env.tfvars -out="$TERRAFORM_DEPLOYMENT/$planName" -detailed-exitcode -no-color
+    if check_file "$TERRAFORM_ENV"/env.tfvars
+    then
+        terraform -chdir="$TERRAFORM_DEPLOYMENT" plan -var-file="$TERRAFORM_ENV"/env.tfvars -out="$TERRAFORM_DEPLOYMENT/$planName" -detailed-exitcode -no-color
+    else
+        terraform -chdir="$TERRAFORM_DEPLOYMENT" plan -out="$TERRAFORM_DEPLOYMENT/$planName" -detailed-exitcode -no-color
+    fi
 else
-    terraform -chdir="$TERRAFORM_DEPLOYMENT" plan -var-file="$TERRAFORM_ENV"/env.tfvars -out="$TERRAFORM_DEPLOYMENT/$planName" -detailed-exitcode
+    if check_file "$TERRAFORM_ENV"/env.tfvars
+    then
+        terraform -chdir="$TERRAFORM_DEPLOYMENT" plan -var-file="$TERRAFORM_ENV"/env.tfvars -out="$TERRAFORM_DEPLOYMENT/$planName" -detailed-exitcode
+    else
+        terraform -chdir="$TERRAFORM_DEPLOYMENT" plan -out="$TERRAFORM_DEPLOYMENT/$planName" -detailed-exitcode
+    fi
 fi
 EXITCODE=$?
 
