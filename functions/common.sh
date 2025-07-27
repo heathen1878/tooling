@@ -42,6 +42,22 @@ function _ok() {
     echo -e "${_tick} [ok] $*\e[0m"
 }
 
+function _info() {
+    _tick="\033[32m-"
+    echo -e "${_tick} [info] $*\e[0m"
+}
+
+function _environment_check_1_tab {
+    _green="\033[1;32m"
+    echo -e "${_green}$1 \t${_green}$2\e[0m"
+}
+
+function _environment_setup_1_tab {
+    _green="\033[1;32m"
+    _magenta="\033[1;35m"
+    echo -e "${_green}$1 \t${_magenta}$2\e[0m"
+}
+
 function _environment_setup_2_tabs {
     _green="\033[1;32m"
     _magenta="\033[1;35m"

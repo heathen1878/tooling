@@ -9,7 +9,6 @@ declare VARIABLE_GROUP_NAME=""
 declare VARIABLES=""
 declare VARIABLE_PREFIX="TF_VAR_"
 
-
 # Checks
 # This is required to export the environment variables to the calling shell
 if [ "$BASH_SOURCE" == "$0" ]
@@ -64,19 +63,22 @@ then
         VARIABLE_PREFIX="${PREFIX}"
     fi
 fi
-
 # End of checks
 
 # Code flow
 VARIABLES=$(az pipelines variable-group list --group-name "$VARIABLE_GROUP_NAME" | jq -c '.[].variables | to_entries[]')
 
-# replace any whitespace as this break bash
+# replace any whitespace as this breaks bash
 for VARIABLE in ${VARIABLES/ /}
 do 
     VARIABLE_NAME=$(echo "$VARIABLE" | jq -rc '.key')
+    VARIABLE_NAME_LOWER=$(echo "$VARIABLE_NAME" | awk '{print tolower($0)}')
     VARIABLE_VALUE=$(echo "$VARIABLE" | jq -rc '.value.value')
-       
+          
     VARIABLE_TO_BE_EXPORTED="${VARIABLE_PREFIX}${VARIABLE_NAME}"
+    VARIABLE_TO_BE_EXPORTED_LOWER="${VARIABLE_PREFIX}${VARIABLE_NAME_LOWER}"
     declare "$VARIABLE_TO_BE_EXPORTED"="${VARIABLE_VALUE}"
+    declare "$VARIABLE_TO_BE_EXPORTED_LOWER"="${VARIABLE_VALUE}"
     export "${VARIABLE_TO_BE_EXPORTED?}"
+    export "${VARIABLE_TO_BE_EXPORTED_LOWER?}"
 done
